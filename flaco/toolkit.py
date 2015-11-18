@@ -7,7 +7,7 @@ This modules provides methods for checking: ICMP/DNS, sockets, and URL status.
 
 >>> from toolkit import Toolkit
 >>> element = Toolkit(node='yahoo.com')
->>> print(element.check_dns(['192.52.233.236'], 'A'))
+>>> print(element.check_dns(['8.8.8.8'], 'A'))
 98.139.183.24, 206.190.36.45, 98.138.253.109
 >>> print(element.check_host('3'))
 --- yahoo.com ping statistics ---
@@ -62,20 +62,23 @@ class Toolkit:
 
             if qtype == 'MX' or qtype == 'mx':
                 _answer = _resolver.query(self.node, qtype)
-                for rdata in _answer:
-                    _data.append('Host{} preferance {}'.format(
-                        rdata.exchange, rdata.preference))
+                #for rdata in _answer:
+                    #_data.append('Host{} preferance {}'.format(
+                        #rdata.exchange, rdata.preference))
+                _data = ['Host {} preferance {}'.format(
+                    rdata.exchange, rdata.preference) for rdata in _answer]
             elif qtype == 'PTR' or qtype == 'ptr':
                 _answer = _resolver.query(dns.reversename.from_address(
                     self.node), qtype)
-                for record in _answer:
-                    _data.append(str(record))
+                #for record in _answer:
+                    #_data.append(str(record))
+                _data = [str(record) for record in _answer]
             else:
                 # Handles both A and CNAME records
                 _answer = _resolver.query(self.node, qtype)
-                for address in _answer:
-                    _data.append(str(address))
-
+                #for address in _answer:
+                    #_data.append(str(address))
+                _data = [str(address) for address in _answer] # NEW
         except dns.exception.SyntaxError:
             return 'Error; check IP address.'
         except dns.rdatatype.UnknownRdatatype:

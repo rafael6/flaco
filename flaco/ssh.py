@@ -28,7 +28,7 @@ from scp import SCPClient
 
 
 class SSH:
-    def __init__(self, username='rafael', password='my_password', port=22):
+    def __init__(self, username='rafael', password='default_pw_ro', port=22):
         """Initialize username, password, and port.
 
         :param username: string, username
@@ -41,7 +41,7 @@ class SSH:
         self.password = password
         self.port = port
         self.client = None
-        self.output_list = []
+        #self.output_list = []
         self.output_dict = dict()
 
     def get_client(self, node):
@@ -137,7 +137,7 @@ class SSH:
 
 def main():
     username = 'rafael'
-    password = 'my_password'
+    password = 'Levittown'
 
     device = '192.168.64.1'
     commands = ['whoami', 'pwd']
