@@ -162,7 +162,7 @@ class Toolkit:
 
 def main():
     element = Toolkit(node='yahoo.com')
-    print(element.check_dns(['10.64.0.139'], 'A'))
+    print(element.check_dns(['8.8.8.8'], 'A'))
     print()
     print(element.check_host('3'))
     print()
