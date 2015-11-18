@@ -17,6 +17,7 @@ def check_transaction(username, host):
 def main():
 
     print(check_transaction('rafael', '192.168.64.1'))
+    print("Thank you for using...")
 
 
 if __name__ == "__main__":
